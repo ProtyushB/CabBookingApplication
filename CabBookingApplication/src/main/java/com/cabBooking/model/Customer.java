@@ -1,4 +1,4 @@
-package com.cabBooking.Model;
+package com.cabBooking.model;
 
 import jakarta.persistence.*;
 
