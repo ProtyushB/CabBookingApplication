@@ -74,17 +74,13 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public String deleteCustomer(Long customerId) {
-        String msg = null;
 
         Optional<Customer> optionalCustomer = customerDao.findById(customerId);
 
-        if (optionalCustomer.isPresent()){
-            customerDao.deleteById(customerId);
-            msg = "Customer Deleted Successfully";
-        }
+        if (optionalCustomer.isPresent()) customerDao.deleteById(customerId);
         else {
             //Customer Not Exists
         }
-        return msg;
+        return "Customer Deleted Successfully";
     }
 }

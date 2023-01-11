@@ -25,7 +25,7 @@ public class Customer {
     @NotNull
     String phone;
 
-    //@Email
+    @Email
     String email;
 
     @Transient
