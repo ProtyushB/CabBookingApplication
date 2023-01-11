@@ -3,9 +3,11 @@ package com.cabBooking.serviceLayer.address;
 import com.cabBooking.dao.AddressDao;
 import com.cabBooking.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class AddressServiceImpl implements AddressService {
 
     @Autowired
@@ -13,7 +15,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address addAddress(Address address) {
-        Address add = addressDao.findAddressByAllDetails(address.getCoutry(), address.getState(), address.getCity(), address.getPincode(), address.getStreetName(), address.getBuildingName(), address.getApartmentNumber());
+        Address add = addressDao.findAddressByAllDetails(address.getCountry(), address.getState(), address.getCity(), address.getPincode(), address.getStreetName(), address.getBuildingName(), address.getApartmentNumber());
 
         if (add==null){
             add = addressDao.save(address);

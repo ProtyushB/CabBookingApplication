@@ -28,14 +28,14 @@ public class Customer {
     @Email
     String email;
 
-    @Transient
+    //@Transient
     String password;
 
     Byte age;
 
     String gender;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     Address address;
 
     String bankAccountNumber;
