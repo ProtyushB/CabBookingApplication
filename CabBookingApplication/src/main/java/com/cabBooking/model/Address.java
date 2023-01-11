@@ -26,7 +26,7 @@ public class Address {
 
     String streetName;
 
-    String coutry;
+    String country;
 
     String state;
 
