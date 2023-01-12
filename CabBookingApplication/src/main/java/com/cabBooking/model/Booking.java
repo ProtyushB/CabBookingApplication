@@ -22,11 +22,5 @@ public class Booking {
 
     LocalDateTime rideEndingTimeAndDate;
 
-    Date date;
-
-    @OneToOne
-    Customer customer;
-
-    @OneToOne
-    Driver driver;
+    String bookingStatus;
 }
