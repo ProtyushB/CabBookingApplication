@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -40,6 +39,9 @@ public class Vehicle {
 
     @OneToOne
     Driver driver;
+
+    @OneToOne
+    VehicleOwner vehicleOwner;
 
 
 }
