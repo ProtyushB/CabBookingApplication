@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -39,6 +41,9 @@ public class Customer {
     Address address;
 
     String bankAccountNumber;
+
+    @OneToMany
+    List<Booking> bookingList = new ArrayList<>();
 
     //String otp;
 

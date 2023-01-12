@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,4 +36,7 @@ public class Driver {
 
     @OneToOne(cascade = CascadeType.ALL)
     Vehicle vehicle;
+
+    @OneToMany
+    List<Booking> bookingList = new ArrayList<>();
 }
