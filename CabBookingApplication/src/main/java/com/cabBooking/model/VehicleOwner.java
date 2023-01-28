@@ -36,9 +36,9 @@ public class VehicleOwner {
 
     String bankAccountNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Address address;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Vehicle> vehicleList = new ArrayList<>();
 }

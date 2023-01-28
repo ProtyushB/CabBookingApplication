@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,12 +40,16 @@ public class Vehicle {
 
     String rcStatus;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     Driver driver;
 
-    @OneToOne
-    VehicleOwner vehicleOwner;
+    /*@OneToOne(fetch = FetchType.LAZY)
+    VehicleOwner vehicleOwner;*/
 
-    @OneToMany
+    @NotNull
+    Long vehicleOwnerId;
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Booking> bookingList = new ArrayList<>();
 }

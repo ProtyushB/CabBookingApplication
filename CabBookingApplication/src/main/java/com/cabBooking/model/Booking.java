@@ -31,4 +31,6 @@ public class Booking {
     LocalDateTime rideEndingTimeAndDate;
 
     String bookingStatus;
+
+
 }

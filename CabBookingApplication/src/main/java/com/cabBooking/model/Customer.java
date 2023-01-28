@@ -37,12 +37,12 @@ public class Customer {
 
     String gender;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Address address;
 
     String bankAccountNumber;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Booking> bookingList = new ArrayList<>();
 
     //String otp;
