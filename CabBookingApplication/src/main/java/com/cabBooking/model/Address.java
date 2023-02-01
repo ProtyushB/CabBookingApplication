@@ -22,7 +22,7 @@ public class Address {
 
     String apartmentNumber;
 
-    String buildingName;
+    String apartmentName;
 
     String streetName;
 

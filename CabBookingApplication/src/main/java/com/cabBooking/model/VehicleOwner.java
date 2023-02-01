@@ -40,5 +40,5 @@ public class VehicleOwner {
     Address address;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Vehicle> vehicleList = new ArrayList<>();
+    List<Vehicle> allVehicles = new ArrayList<>();
 }

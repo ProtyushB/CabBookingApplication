@@ -30,6 +30,12 @@ public class Booking {
 
     LocalDateTime rideEndingTimeAndDate;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Location rideStartingPoint;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Location rideEndingPoint;
+    
     String bookingStatus;       // 1.Active     2.Completed     3.Upcoming
 
 

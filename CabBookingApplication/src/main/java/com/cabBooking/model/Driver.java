@@ -31,6 +31,10 @@ public class Driver {
 
     String adhaarNumber;
 
+    String bankAccountNumber;
+
+    String licenseNumber;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Address address;
 

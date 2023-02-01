@@ -40,14 +40,14 @@ public class Vehicle {
 
     String rcStatus;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    VehicleOwner vehicleOwner;
+
     @OneToOne(fetch = FetchType.EAGER)
     Driver driver;
 
-    /*@OneToOne(fetch = FetchType.LAZY)
-    VehicleOwner vehicleOwner;*/
-
-    @NotNull
-    Long vehicleOwnerId;
+    @OneToOne(fetch = FetchType.EAGER)
+    Location location;
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
