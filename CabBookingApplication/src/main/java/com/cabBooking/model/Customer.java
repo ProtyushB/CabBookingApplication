@@ -43,7 +43,9 @@ public class Customer {
     String bankAccountNumber;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Booking> bookingList = new ArrayList<>();
+    List<Booking> allBookings = new ArrayList<>();
+
+
 
     //String otp;
 

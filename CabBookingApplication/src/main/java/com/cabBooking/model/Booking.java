@@ -30,7 +30,7 @@ public class Booking {
 
     LocalDateTime rideEndingTimeAndDate;
 
-    String bookingStatus;
+    String bookingStatus;       // 1.Active     2.Completed     3.Upcoming
 
 
 }

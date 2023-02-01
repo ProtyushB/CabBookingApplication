@@ -38,5 +38,5 @@ public class Driver {
     Vehicle vehicle;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Booking> bookingList = new ArrayList<>();
+    List<Booking> allBookings = new ArrayList<>();
 }

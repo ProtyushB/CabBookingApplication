@@ -51,5 +51,5 @@ public class Vehicle {
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Booking> bookingList = new ArrayList<>();
+    List<Booking> allBookings = new ArrayList<>();
 }
