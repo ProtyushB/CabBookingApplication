@@ -36,7 +36,7 @@ public class Booking {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Location rideEndingPoint;
 
-    String bookingStatus;       // 1.Active     2.Completed     3.Upcoming
+    String bookingStatus;       // 1.Active     2.Completed     3.Upcoming      4.Cancelled
 
 
 }

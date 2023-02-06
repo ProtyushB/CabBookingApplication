@@ -38,9 +38,4 @@ public class CustomerController {
     public ResponseEntity<String> deleteCustomer(@PathVariable("id") Long customerId){
         return new ResponseEntity<>(customerService.deleteCustomer(customerId), HttpStatus.OK);
     }
-
-    @PutMapping("/{customerId}")
-    public ResponseEntity<Customer> addAddressToCustomer(@PathVariable("customerId") Long customerId, @RequestBody Address address){
-        return new ResponseEntity<>(customerService.addAddressToCustomer(customerId, address), HttpStatus.ACCEPTED);
-    }
 }

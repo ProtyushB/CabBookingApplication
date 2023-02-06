@@ -15,7 +15,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address addAddress(Address address) {
-        Address add = addressDao.findAddressByAllDetails(address.getCountry(), address.getState(), address.getCity(), address.getPincode(), address.getStreetName(), address.getBuildingName(), address.getApartmentNumber());
+        Address add = addressDao.findAddressByAllDetails(address.getCountry(), address.getState(), address.getCity(), address.getPincode(), address.getStreetName(), address.getApartmentName(), address.getApartmentNumber());
 
         if (add==null){
             add = addressDao.save(address);
