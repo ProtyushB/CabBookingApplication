@@ -1,13 +1,15 @@
 package com.cabBooking.serviceLayer.customer;
 
 import com.cabBooking.dao.AddressDao;
+import com.cabBooking.dao.BookingDao;
 import com.cabBooking.dao.CustomerDao;
-import com.cabBooking.model.Address;
-import com.cabBooking.model.Booking;
-import com.cabBooking.model.Customer;
+import com.cabBooking.dao.VehicleDao;
+import com.cabBooking.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +20,12 @@ public class CustomerServiceImpl implements CustomerService{
     private CustomerDao customerDao;
 
     @Autowired
-    private AddressDao addressDao;
+    private VehicleDao vehicleDao;
+
+    @Autowired
+    private BookingDao bookingDao;
+
+
 
     @Override
     public Customer addCustomer(Customer customer) {
@@ -99,15 +106,38 @@ public class CustomerServiceImpl implements CustomerService{
 
 
     @Override
-    public String newBooking(Booking booking) {
-        return null;
+    public String newBooking(Booking booking, Long customerId, Long vehicleId) {
+        Customer customer = null;
+        Vehicle vehicle = null;
+        Driver driver = null;
+
+        Optional<Customer> optionalCustomer = customerDao.findById(customerId);
+
+        if (optionalCustomer.isPresent()){
+            customer = optionalCustomer.get();
+
+            Optional<Vehicle> optionalVehicle = vehicleDao.findById(vehicleId);
+
+            if (optionalVehicle.isPresent()){
+                vehicle = optionalVehicle.get();
+
+                driver = vehicle.getDriver();
+
+                booking = bookingDao.save(booking);
+                vehicle.getAllBookings().add(booking);
+                driver.getAllBookings().add(booking);
+                customer.getAllBookings().add(booking);
+            }
+            else {
+                //Vehicle Not Found
+            }
+        }
+        else{
+            //Customer Not Found
+        }
+        return "Booking Confirmed";
     }
 
-    @Override
-    public String deleteBookingFromCustomer(Long bookingId) {
-        return null;
-    }
-
 
 
 
@@ -115,23 +145,60 @@ public class CustomerServiceImpl implements CustomerService{
 
 
     @Override
-    public List<Booking> getAllBookings(Long CustomerId) {
-        return null;
+    public List<Booking> getAllBookings(Long customerId) {
+        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+
+        if(allBookings.size()==0) {/* No Bookings Available*/}
+
+        return allBookings;
     }
 
     @Override
     public List<Booking> getBookingHistory(Long customerId) {
-        return null;
+        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        List<Booking> bookingHistory = new ArrayList<>();
+
+        for (Booking b:allBookings) if(b.getBookingStatus().equals("Completed")) bookingHistory.add(b);
+
+        if (bookingHistory.size()==0) {/* Booking History Not Available */}
+
+        return bookingHistory;
     }
 
     @Override
     public List<Booking> getActiveBookings(Long customerId) {
-        return null;
+        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        List<Booking> activeBookings =new ArrayList<>();
+
+        for(Booking b:allBookings) if (b.getBookingStatus().equals("Active")) activeBookings.add(b);
+
+        if (activeBookings.size()==0) {/* No Active Bookings Found */}
+
+        return activeBookings;
     }
 
     @Override
     public List<Booking> getUpComingBookings(Long customerId) {
-        return null;
+        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        List<Booking> upComingBookings = new ArrayList<>();
+
+        for(Booking b:allBookings) if (b.getBookingStatus().equals("Upcoming")) upComingBookings.add(b);
+
+        if (upComingBookings.size()==0) {/* No Upcoming Bookings Found */}
+
+        return upComingBookings;
+    }
+
+    @Override
+    public List<Booking> getCancelledBookings(Long customerId) {
+        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        List<Booking> cancelledBookings = new ArrayList<>();
+
+        for (Booking b:allBookings) if (b.getBookingStatus().equals("Cancelled")) cancelledBookings.add(b);
+
+        if (cancelledBookings.size()==0) {/* No Cancelled Bookings Available */}
+
+        return cancelledBookings;
     }
 
 }

@@ -14,10 +14,11 @@ public interface CustomerService {
     Customer viewCustomer(Long customerId);
     String deleteCustomer(Long customerId);
 
-    String newBooking(Booking booking);
+    String newBooking(Booking booking, Long customerId, Long vehicleId);
 
     List<Booking> getAllBookings(Long CustomerId);
     List<Booking> getBookingHistory(Long customerId);
     List<Booking> getActiveBookings(Long customerId);
     List<Booking> getUpComingBookings(Long customerId);
+    List<Booking> getCancelledBookings(Long customerId);
 }
