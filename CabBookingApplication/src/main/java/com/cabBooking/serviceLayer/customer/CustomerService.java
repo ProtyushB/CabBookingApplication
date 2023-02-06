@@ -1,8 +1,11 @@
 package com.cabBooking.serviceLayer.customer;
 
 import com.cabBooking.model.Address;
+import com.cabBooking.model.Booking;
 import com.cabBooking.model.Customer;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 public interface CustomerService {
 
@@ -10,5 +13,12 @@ public interface CustomerService {
     Customer updateCustomer(Customer customer);
     Customer viewCustomer(Long customerId);
     String deleteCustomer(Long customerId);
-    Customer addAddressToCustomer(Long customerId, Address address);
+
+    String addBookingToCustomer();
+    String deleteBookingFromCustomer();
+
+    List<Booking> getAllBookings(Long CustomerId);
+    List<Booking> getBookingHistory(Long customerId);
+    List<Booking> getActiveBookings(Long customerId);
+    List<Booking> getUpComingBookings(Long customerId);
 }
