@@ -14,7 +14,7 @@ public interface CustomerService {
     Customer viewCustomer(Long customerId);
     String deleteCustomer(Long customerId);
 
-    String addBookingToCustomer();
+    String newBooking();
     String deleteBookingFromCustomer();
 
     List<Booking> getAllBookings(Long CustomerId);
