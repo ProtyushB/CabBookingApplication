@@ -1,10 +1,12 @@
 package com.cabBooking.serviceLayer.driver;
 
 import com.cabBooking.dao.DriverDao;
+import com.cabBooking.model.Booking;
 import com.cabBooking.model.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -79,5 +81,35 @@ public class DriverServiceImpl implements DriverService{
             //Driver Not Exists
         }
         return "Driver Deleted Successfully";
+    }
+
+    @Override
+    public String acceptBooking(Booking booking) {
+        return null;
+    }
+
+    @Override
+    public String rejectBooking(Booking booking) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getAllBookings(Long driverId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getBookingHistory(Long driverId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getActiveBookings(Long driverId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getCencelledBookings(Long driverId) {
+        return null;
     }
 }
