@@ -3,10 +3,12 @@ package com.cabBooking.serviceLayer.customer;
 import com.cabBooking.dao.AddressDao;
 import com.cabBooking.dao.CustomerDao;
 import com.cabBooking.model.Address;
+import com.cabBooking.model.Booking;
 import com.cabBooking.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -91,27 +93,45 @@ public class CustomerServiceImpl implements CustomerService{
         return "Customer Deleted Successfully";
     }
 
+
+
+
+
+
     @Override
-    public Customer addAddressToCustomer(Long customerId, Address address) {
-        Customer customer = null;
-        Address add = null;
-
-        Optional<Customer> optionalCustomer = customerDao.findById(customerId);
-
-        Customer updatedCustomer = null;
-
-        if (optionalCustomer.isPresent()){
-            customer = optionalCustomer.get();
-
-            add = addressDao.findAddressByAllDetails(address.getCountry(), address.getState(), address.getCity(), address.getPincode(), address.getStreetName(), address.getBuildingName(), address.getApartmentNumber());
-
-            customer.setAddress(add);
-            updatedCustomer = customerDao.save(customer);
-        }
-        else{
-            //Customer Not Found
-        }
-
-        return updatedCustomer;
+    public String newBooking(Booking booking) {
+        return null;
     }
+
+    @Override
+    public String deleteBookingFromCustomer(Long bookingId) {
+        return null;
+    }
+
+
+
+    
+
+
+
+    @Override
+    public List<Booking> getAllBookings(Long CustomerId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getBookingHistory(Long customerId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getActiveBookings(Long customerId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getUpComingBookings(Long customerId) {
+        return null;
+    }
+
 }
