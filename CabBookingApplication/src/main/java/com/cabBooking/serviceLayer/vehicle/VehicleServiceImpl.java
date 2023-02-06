@@ -1,10 +1,13 @@
 package com.cabBooking.serviceLayer.vehicle;
 
 import com.cabBooking.dao.VehicleDao;
+import com.cabBooking.model.Booking;
+import com.cabBooking.model.Driver;
 import com.cabBooking.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,5 +64,40 @@ public class VehicleServiceImpl implements VehicleService{
             //Vehicle Not Found
         }
         return "Vehicle Deleted Successfully";
+    }
+
+    @Override
+    public Vehicle assignDriverToVehicle(Long vehicleId, Driver driver) {
+        return null;
+    }
+
+    @Override
+    public Vehicle removeDriverFromVehicle(Long vehicleId, Long driverId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getAllBookings(Long vehicleId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getBookingHistory(Long vehicleId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getActiveBookings(Long vehicleId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getUpComingBookings(Long vehicleId) {
+        return null;
+    }
+
+    @Override
+    public List<Booking> getCancelledBookings(Long vehicleId) {
+        return null;
     }
 }
