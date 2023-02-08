@@ -7,6 +7,7 @@ import com.cabBooking.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,7 +79,21 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public List<Booking> getAllBookings(Long vehicleId) {
-        return null;
+        Vehicle vehicle = null;
+        List<Booking> allBookings = new ArrayList<>();
+
+        Optional<Vehicle> optionalVehicle  = vehicleDao.findById(vehicleId);
+
+        if (optionalVehicle.isPresent()){
+            vehicle = optionalVehicle.get();
+            allBookings = vehicle.getAllBookings();
+
+            if (allBookings.size()==0) {/* No Bookings Found */}
+        }
+        else{
+            //Vehicle Not Found
+        }
+        return allBookings;
     }
 
     @Override
