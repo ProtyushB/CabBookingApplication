@@ -164,6 +164,25 @@ public class DriverServiceImpl implements DriverService{
 
     @Override
     public List<Booking> getCancelledBookings(Long driverId) {
-        return null;
+        Driver driver = null;
+        List<Booking> allBookings = new ArrayList<>();
+        List<Booking> cancelledBookings = new ArrayList<>();
+
+        Optional<Driver> optionalDriver = driverDao.findById(driverId);
+
+        if (optionalDriver.isPresent()){
+            driver = optionalDriver.get();
+            allBookings = driver.getAllBookings();
+
+            for (Booking b : allBookings)
+                if (b.getBookingStatus().equals("Cancelled"))
+                    cancelledBookings.add(b);
+
+            if (cancelledBookings.size()==0) {/* No Cancelled Bookings Available */}
+        }
+        else{
+            //Driver Not Found
+        }
+        return cancelledBookings;
     }
 }
