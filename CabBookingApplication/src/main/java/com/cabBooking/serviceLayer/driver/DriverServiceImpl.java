@@ -163,6 +163,29 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
+    public List<Booking> getUpComingBookings(Long driverId) {
+        Driver driver = null;
+        List<Booking> allBookings = new ArrayList<>();
+        List<Booking> upComingBookings = new ArrayList<>();
+
+        Optional<Driver> optionalDriver = driverDao.findById(driverId);
+
+        if (optionalDriver.isPresent()){
+            driver = optionalDriver.get();
+            allBookings = driver.getAllBookings();
+
+            for (Booking b : allBookings)
+                if (b.getBookingStatus().equals("Upcoming"))
+                    upComingBookings.add(b);
+            if (upComingBookings.size()==0) {/* Not UpComing Bookings Available */}
+        }
+        else {
+            //Driver Not Found
+        }
+        return upComingBookings;
+    }
+
+    @Override
     public List<Booking> getCancelledBookings(Long driverId) {
         Driver driver = null;
         List<Booking> allBookings = new ArrayList<>();
