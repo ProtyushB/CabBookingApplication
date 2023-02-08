@@ -6,6 +6,8 @@ import com.cabBooking.model.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,19 +85,33 @@ public class DriverServiceImpl implements DriverService{
         return "Driver Deleted Successfully";
     }
 
-    @Override
-    public String acceptBooking(Booking booking) {
-        return null;
+    /*@Override
+    public String acceptBooking(Booking booking, Long driverId) {
+
     }
 
     @Override
-    public String rejectBooking(Booking booking) {
+    public String rejectBooking(Booking booking, Long driverId) {
         return null;
-    }
+    }*/
 
     @Override
     public List<Booking> getAllBookings(Long driverId) {
-        return null;
+        Driver driver = null;
+        List<Booking> allBookings = new ArrayList<>();
+
+        Optional<Driver> optionalDriver = driverDao.findById(driverId);
+
+        if (optionalDriver.isPresent()){
+            driver = optionalDriver.get();
+            allBookings = driver.getAllBookings();
+
+            if (allBookings.size()==0) {/* No Bookings Found */}
+        }
+        else {
+            //Driver Not Found
+        }
+        return allBookings;
     }
 
     @Override
@@ -109,7 +125,7 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
-    public List<Booking> getCencelledBookings(Long driverId) {
+    public List<Booking> getCancelledBookings(Long driverId) {
         return null;
     }
 }
