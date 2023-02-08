@@ -98,7 +98,26 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public List<Booking> getBookingHistory(Long vehicleId) {
-        return null;
+        Vehicle vehicle = null;
+        List<Booking> allBookings = new ArrayList<>();
+        List<Booking> bookingHistory = new ArrayList<>();
+
+        Optional<Vehicle> optionalVehicle = vehicleDao.findById(vehicleId);
+
+        if (optionalVehicle.isPresent()){
+            vehicle = optionalVehicle.get();
+            allBookings = vehicle.getAllBookings();
+
+            for (Booking b : allBookings)
+                if (b.getBookingStatus().equals("Completed"))
+                    bookingHistory.add(b);
+
+            if (bookingHistory.size()==0) {/* No Booking History Found */}
+        }
+        else{
+            //Vehicle Not Found
+        }
+        return bookingHistory;
     }
 
     @Override
