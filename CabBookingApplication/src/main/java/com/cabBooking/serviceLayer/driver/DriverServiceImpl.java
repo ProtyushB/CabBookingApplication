@@ -116,7 +116,26 @@ public class DriverServiceImpl implements DriverService{
 
     @Override
     public List<Booking> getBookingHistory(Long driverId) {
-        return null;
+        Driver driver = null;
+        List<Booking> allBookings = new ArrayList<>();
+        List<Booking> bookingHistory = new ArrayList<>();
+
+        Optional<Driver> optionalDriver = driverDao.findById(driverId);
+
+        if (optionalDriver.isPresent()){
+            driver = optionalDriver.get();
+            allBookings = driver.getAllBookings();
+
+            for (Booking b : allBookings)
+                if(b.getBookingStatus().equals("Completed"))
+                    bookingHistory.add(b);
+
+            if (bookingHistory.size()==0) {/* Not Booking History Available */}
+        }
+        else{
+            //Driver Not Found
+        }
+        return bookingHistory;
     }
 
     @Override
