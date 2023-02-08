@@ -170,6 +170,25 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public List<Booking> getCancelledBookings(Long vehicleId) {
-        return null;
+        Vehicle vehicle = null;
+        List<Booking> allBookings = new ArrayList<>();
+        List<Booking> cancelledBookings = new ArrayList<>();
+
+        Optional<Vehicle> optionalVehicle = vehicleDao.findById(vehicleId);
+
+        if (optionalVehicle.isPresent()){
+            vehicle = optionalVehicle.get();
+            allBookings = vehicle.getAllBookings();
+
+            for (Booking b : allBookings)
+                if (b.getBookingStatus().equals("Cancelled"))
+                    cancelledBookings.add(b);
+
+            if (cancelledBookings.size()==0) {/* No Cancelled Bookings Available */}
+        }
+        else {
+            //Vehicle Not Found
+        }
+        return cancelledBookings;
     }
 }
