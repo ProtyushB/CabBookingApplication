@@ -11,8 +11,8 @@ public interface DriverService {
     Driver viewDriver(Long driverId);
     String deleteDriver(Long driverId);
 
-    String acceptBooking(Booking booking, Long driverId);
-    String rejectBooking(Booking booking, Long driverId);
+    /*String acceptBooking(Booking booking, Long driverId);
+    String rejectBooking(Booking booking, Long driverId);*/
 
     List<Booking> getAllBookings(Long driverId);
     List<Booking> getBookingHistory(Long driverId);
