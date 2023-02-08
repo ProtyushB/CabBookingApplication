@@ -140,7 +140,26 @@ public class DriverServiceImpl implements DriverService{
 
     @Override
     public List<Booking> getActiveBookings(Long driverId) {
-        return null;
+        Driver driver = null;
+        List<Booking> allBookings = new ArrayList<>();
+        List<Booking> activeBookings = new ArrayList<>();
+
+        Optional<Driver> optionalDriver = driverDao.findById(driverId);
+
+        if (optionalDriver.isPresent()){
+            driver = optionalDriver.get();
+            allBookings = driver.getAllBookings();
+
+            for (Booking b : allBookings)
+                if (b.getBookingStatus().equals("Active"))
+                    activeBookings.add(b);
+
+            if (activeBookings.size()==0) {/* No Active Bookings Available */}
+        }
+        else{
+            //Driver Not Found
+        }
+        return activeBookings;
     }
 
     @Override
