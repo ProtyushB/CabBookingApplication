@@ -17,5 +17,6 @@ public interface DriverService {
     List<Booking> getAllBookings(Long driverId);
     List<Booking> getBookingHistory(Long driverId);
     List<Booking> getActiveBookings(Long driverId);
+    List<Booking> getUpComingBookings(Long driverId);
     List<Booking> getCancelledBookings(Long driverId);
 }
