@@ -60,4 +60,9 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getActiveBookings(customerId), HttpStatus.FOUND);
     }
 
+    @GetMapping("/upComingBookings/{id}")
+    public ResponseEntity<List<Booking>> getUpComingBookings(@PathVariable("id") Long cutsomerId){
+        return new ResponseEntity<>(customerService.getUpComingBookings(cutsomerId), HttpStatus.FOUND);
+    }
+
 }
