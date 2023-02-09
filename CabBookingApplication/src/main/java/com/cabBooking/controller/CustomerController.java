@@ -65,4 +65,9 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getUpComingBookings(cutsomerId), HttpStatus.FOUND);
     }
 
+    @GetMapping("/cancelledBookings/{id}")
+    public ResponseEntity<List<Booking>> getCancelledBookings(@PathVariable("id") Long customerId){
+        return new ResponseEntity<>(customerService.getCancelledBookings(customerId), HttpStatus.FOUND);
+    }
+
 }
