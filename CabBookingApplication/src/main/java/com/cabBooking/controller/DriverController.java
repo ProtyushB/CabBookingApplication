@@ -50,6 +50,11 @@ public class DriverController {
         return new ResponseEntity<>(driverService.getAllBookings(driverId), HttpStatus.FOUND);
     }
 
+    @GetMapping("/bookingHistory/{id}")
+    public ResponseEntity<List<Booking>> getBookingsHistory(@PathVariable("id") Long driverId){
+        return new ResponseEntity<>(driverService.getBookingHistory(driverId), HttpStatus.FOUND);
+    }
+
     
 
 }
