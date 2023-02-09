@@ -1,6 +1,7 @@
 package com.cabBooking.controller;
 
 import com.cabBooking.model.Address;
+import com.cabBooking.model.Booking;
 import com.cabBooking.model.Customer;
 import com.cabBooking.serviceLayer.address.AddressService;
 import com.cabBooking.serviceLayer.customer.CustomerService;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -16,17 +19,9 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    private AddressService addressService;
-
     @PostMapping("/")
     public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer){
         return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.CREATED);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long customerId){
-        return new ResponseEntity<>(customerService.viewCustomer(customerId), HttpStatus.FOUND);
     }
 
     @PutMapping("/")
@@ -34,8 +29,27 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.updateCustomer(customer), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Customer> viewCustomer(@PathVariable("id") Long customerId){
+        return new ResponseEntity<>(customerService.viewCustomer(customerId), HttpStatus.FOUND);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("id") Long customerId){
         return new ResponseEntity<>(customerService.deleteCustomer(customerId), HttpStatus.OK);
     }
+
+
+
+
+
+
+
+    @GetMapping("/allBookings/{id}")
+    public ResponseEntity<List<Booking>> getALlBookings(@PathVariable("id") Long customerId){
+        return new ResponseEntity<>(customerService.getAllBookings(customerId), HttpStatus.FOUND);
+    }
+
+    
+
 }
