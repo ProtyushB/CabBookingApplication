@@ -146,57 +146,111 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public List<Booking> getAllBookings(Long customerId) {
-        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        Customer customer = null;
+        List<Booking> allBookings = customer.getAllBookings();
 
-        if(allBookings.size()==0) {/* No Bookings Available*/}
+        Optional<Customer> optionalCustomer = customerDao.findById(customerId);
+
+        if (optionalCustomer.isPresent()){
+            customer = optionalCustomer.get();
+
+            if(allBookings.size()==0) {/* No Bookings Available*/}
+        }
+        else {
+            //Customer Not Found
+        }
 
         return allBookings;
     }
 
     @Override
     public List<Booking> getBookingHistory(Long customerId) {
-        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        Customer customer = null;
+        List<Booking> allBookings = new ArrayList<>();
         List<Booking> bookingHistory = new ArrayList<>();
 
-        for (Booking b:allBookings) if(b.getBookingStatus().equals("Completed")) bookingHistory.add(b);
+        Optional<Customer> optionalCustomer = customerDao.findById(customerId);
 
-        if (bookingHistory.size()==0) {/* Booking History Not Available */}
+        if (optionalCustomer.isPresent()){
+            customer = optionalCustomer.get();
+            allBookings = customer.getAllBookings();
+
+            for (Booking b:allBookings) if(b.getBookingStatus().equals("Completed")) bookingHistory.add(b);
+
+            if (bookingHistory.size()==0) {/* Booking History Not Available */}
+        }
+        else {
+            //Customer Not Found
+        }
 
         return bookingHistory;
     }
 
     @Override
     public List<Booking> getActiveBookings(Long customerId) {
-        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        Customer customer = null;
+        List<Booking> allBookings = new ArrayList<>();
         List<Booking> activeBookings =new ArrayList<>();
 
-        for(Booking b:allBookings) if (b.getBookingStatus().equals("Active")) activeBookings.add(b);
+        Optional<Customer> optionalCustomer = customerDao.findById(customerId);
 
-        if (activeBookings.size()==0) {/* No Active Bookings Found */}
+        if (optionalCustomer.isPresent()){
+            customer = optionalCustomer.get();
+            allBookings = customer.getAllBookings();
+
+            for(Booking b:allBookings) if (b.getBookingStatus().equals("Active")) activeBookings.add(b);
+
+            if (activeBookings.size()==0) {/* No Active Bookings Found */}
+        }
+        else{
+            //Customer Not Found
+        }
 
         return activeBookings;
     }
 
     @Override
     public List<Booking> getUpComingBookings(Long customerId) {
-        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        Customer customer = null;
+        List<Booking> allBookings = new ArrayList<>();
         List<Booking> upComingBookings = new ArrayList<>();
 
-        for(Booking b:allBookings) if (b.getBookingStatus().equals("Upcoming")) upComingBookings.add(b);
+        Optional<Customer> optionalCustomer = customerDao.findById(customerId);
 
-        if (upComingBookings.size()==0) {/* No Upcoming Bookings Found */}
+        if (optionalCustomer.isPresent()){
+            customer = optionalCustomer.get();
+            allBookings = customer.getAllBookings();
+
+            for(Booking b:allBookings) if (b.getBookingStatus().equals("Upcoming")) upComingBookings.add(b);
+
+            if (upComingBookings.size()==0) {/* No Upcoming Bookings Found */}
+        }
+        else{
+            //Customer Not Found
+        }
 
         return upComingBookings;
     }
 
     @Override
     public List<Booking> getCancelledBookings(Long customerId) {
-        List<Booking> allBookings = bookingDao.getAllBookings(customerId);
+        Customer customer = null;
+        List<Booking> allBookings = new ArrayList<>();
         List<Booking> cancelledBookings = new ArrayList<>();
 
-        for (Booking b:allBookings) if (b.getBookingStatus().equals("Cancelled")) cancelledBookings.add(b);
+        Optional<Customer> optionalCustomer = customerDao.findById(customerId);
 
-        if (cancelledBookings.size()==0) {/* No Cancelled Bookings Available */}
+        if (optionalCustomer.isPresent()){
+            customer = optionalCustomer.get();
+            allBookings = customer.getAllBookings();
+
+            for (Booking b:allBookings) if (b.getBookingStatus().equals("Cancelled")) cancelledBookings.add(b);
+
+            if (cancelledBookings.size()==0) {/* No Cancelled Bookings Available */}
+        }
+        else{
+            //Customer Not Found
+        }
 
         return cancelledBookings;
     }
