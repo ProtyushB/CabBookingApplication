@@ -50,6 +50,9 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getAllBookings(customerId), HttpStatus.FOUND);
     }
 
-    
+    @GetMapping("/bookingHistory/{id}")
+    public ResponseEntity<List<Booking>> getBookingHistory(@PathVariable("id") Long customerId){
+        return new ResponseEntity<>(customerService.getBookingHistory(customerId), HttpStatus.FOUND);
+    }
 
 }
