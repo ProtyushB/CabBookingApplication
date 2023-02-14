@@ -10,10 +10,7 @@ import java.util.List;
 @Repository
 public interface BookingDao extends JpaRepository<Booking, Long> {
 
-    /*@Query("select c.allBookings from Customer as c where c.customerId=?1")
-    List<Booking> getAllBookings(Long customerId);*/
-
-    @Query("from Booking where bookingStatus=?2")
+    @Query("from Booking where bookingStatus=?1")
     List<Booking> getAllBookingsByBookingStatus(String status);
 
 }
