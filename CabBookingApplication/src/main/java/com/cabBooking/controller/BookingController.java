@@ -31,7 +31,7 @@ public class BookingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Booking> getBooking(@PathVariable("id") Long bookingId){
+    public ResponseEntity<Booking> viewBooking(@PathVariable("id") Long bookingId){
         return new ResponseEntity<>(bookingService.viewBooking(bookingId), HttpStatus.FOUND);
     }
 
