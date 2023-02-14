@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import java.awt.print.Book;
+import java.util.List;
 
 @RestController
 @RequestMapping("/booking")
@@ -40,5 +41,17 @@ public class BookingController {
         return new ResponseEntity<>(bookingService.deleteBooking(bookingId), HttpStatus.OK);
     }
 
-    //Get ALl Booking From Customer Controller
+
+
+
+
+    @GetMapping("/getAllBookings")
+    public ResponseEntity<List<Booking>> getAllBookings(){
+        return new ResponseEntity<>(bookingService.getAllBookings(), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/getAllBookings/{status}")
+    public ResponseEntity<List<Booking>> getAllBookingsByBookingStatus(@PathVariable("status") String status){
+        return new ResponseEntity<>(bookingService.getAllBookingsByBookingStatus(status), HttpStatus.FOUND);
+    }
 }
