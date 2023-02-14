@@ -67,15 +67,9 @@ public class VehicleServiceImpl implements VehicleService{
         return "Vehicle Deleted Successfully";
     }
 
-    @Override
-    public Vehicle assignDriverToVehicle(Long vehicleId, Driver driver) {
-        return null;
-    }
 
-    @Override
-    public Vehicle removeDriverFromVehicle(Long vehicleId, Long driverId) {
-        return null;
-    }
+
+
 
     @Override
     public List<Booking> getAllBookings(Long vehicleId) {
