@@ -29,33 +29,12 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Customer addCustomer(Customer customer) {
-        Customer cust = null;
 
-        //Checking With Email
-        if (customer.getEmail()!=null){
-            cust = customerDao.findCustomerByEmail(customer.getEmail());
-
-            if (cust==null){
-                cust = customerDao.save(customer);
-            }
-            else {
-                // Customer With Email Already Exists
-            }
+        Optional<Customer> optionalCustomer = customerDao.findByEmail(customer.getEmail());
+        if (optionalCustomer.isPresent()){
+            //Customer Already Exists
         }
-
-        //Checking With Phone
-        if (customer.getPhone()!=null){
-            cust = customerDao.findCustomerByPhone(customer.getPhone());
-
-            if (cust==null){
-                cust = customerDao.save(customer);
-            }
-            else {
-                //Customer With Phone Already Exists
-            }
-        }
-
-        return cust;
+        return customerDao.save(customer);
     }
 
     @Override
