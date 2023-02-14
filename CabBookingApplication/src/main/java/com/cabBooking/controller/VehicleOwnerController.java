@@ -25,7 +25,7 @@ public class VehicleOwnerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VehicleOwner> getVehicleOwner(@PathVariable("id") Long vehicleOwnerId){
+    public ResponseEntity<VehicleOwner> viewVehicleOwner(@PathVariable("id") Long vehicleOwnerId){
         return new ResponseEntity<>(vehicleOwnerService.viewVehicleOwner(vehicleOwnerId), HttpStatus.FOUND);
     }
 
