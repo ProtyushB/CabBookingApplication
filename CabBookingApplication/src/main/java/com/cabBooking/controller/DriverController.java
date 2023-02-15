@@ -6,6 +6,7 @@ import com.cabBooking.serviceLayer.driver.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.service.annotation.PutExchange;
 
@@ -19,8 +20,12 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
-    @PostMapping("/")
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @PostMapping("/add")
     public ResponseEntity<Driver> addDriver(@RequestBody Driver driver){
+        driver.setPassword(passwordEncoder.encode(driver.getPassword()));
         return new ResponseEntity<>(driverService.addDriver(driver), HttpStatus.CREATED);
     }
 

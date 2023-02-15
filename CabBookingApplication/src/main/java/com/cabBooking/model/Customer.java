@@ -1,5 +1,6 @@
 package com.cabBooking.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class Customer {
     @Column(unique = true)
     String email;
 
-    //@Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
 
     Byte age;
@@ -45,10 +46,5 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Booking> allBookings = new ArrayList<>();
-
-
-
-    //String otp;
-
 
 }

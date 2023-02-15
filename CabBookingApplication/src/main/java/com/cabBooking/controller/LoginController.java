@@ -30,6 +30,7 @@ public class LoginController {
 
     @GetMapping("/signIn")
     public ResponseEntity<Object> getLoggedInCustomerDetailsHandler(Authentication auth){
+        System.out.println(auth);
         Customer customer = null;
         Driver driver = null;
         VehicleOwner vehicleOwner = null;
@@ -39,14 +40,18 @@ public class LoginController {
         Optional<VehicleOwner> optionalVehicleOwner = vehicleOwnerDao.findByEmail(auth.getName());
 
         if (optionalCustomer.isPresent()){
+            System.out.println("Inside Customer Login");
             customer = optionalCustomer.get();
             return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
+
         }
         else if(optionalDriver.isPresent()){
+            System.out.println("Inside Driver Login");
             driver = optionalDriver.get();
             return new ResponseEntity<>(driver, HttpStatus.ACCEPTED);
         }
         else if (optionalVehicleOwner.isPresent()){
+            System.out.println("Inside Vehicle Owner Login");
             vehicleOwner = optionalVehicleOwner.get();
             return new ResponseEntity<>(vehicleOwner, HttpStatus.ACCEPTED);
         }

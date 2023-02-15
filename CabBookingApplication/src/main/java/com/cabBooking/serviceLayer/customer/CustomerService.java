@@ -13,6 +13,7 @@ public interface CustomerService {
     Customer updateCustomer(Customer customer);
     Customer viewCustomer(Long customerId);
     String deleteCustomer(Long customerId);
+    List<Customer> findAllCustomers();
 
     String newBooking(Booking booking, Long customerId, Long vehicleId);
 

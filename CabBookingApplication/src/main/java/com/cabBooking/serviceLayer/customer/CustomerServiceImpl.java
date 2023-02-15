@@ -79,9 +79,14 @@ public class CustomerServiceImpl implements CustomerService{
         return "Customer Deleted Successfully";
     }
 
+    @Override
+    public List<Customer> findAllCustomers() {
+        List<Customer> customers = customerDao.findAll();
 
+        if (customers.size()==0) {/* No Customer Found */}
 
-
+        return customers;
+    }
 
 
     @Override

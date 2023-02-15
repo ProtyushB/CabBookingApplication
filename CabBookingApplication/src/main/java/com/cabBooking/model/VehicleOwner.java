@@ -1,5 +1,6 @@
 package com.cabBooking.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class VehicleOwner {
     @Column(unique = true)
     String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
 
     Byte age;

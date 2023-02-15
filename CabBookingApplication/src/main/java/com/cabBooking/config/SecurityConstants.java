@@ -1,6 +1,6 @@
 package com.cabBooking.config;
 
-public class SecurityConstants {
+public interface SecurityConstants {
     public static final String JWT_KEY = "secretsfhsfjhdkjngdfjkgfgjdlkfjsdkfjsd";
     public static final String JWT_HEADER = "Authorization";
 }

@@ -8,6 +8,7 @@ import com.cabBooking.serviceLayer.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,12 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping("/")
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @PostMapping("/add")
     public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer){
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.CREATED);
     }
 
@@ -37,6 +42,11 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("id") Long customerId){
         return new ResponseEntity<>(customerService.deleteCustomer(customerId), HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Customer>> getAllCustomers(){
+        return new ResponseEntity<>(customerService.findAllCustomers(), HttpStatus.FOUND);
     }
 
 

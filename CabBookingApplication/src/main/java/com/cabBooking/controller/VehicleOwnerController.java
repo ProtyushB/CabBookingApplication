@@ -5,6 +5,7 @@ import com.cabBooking.serviceLayer.vehicleOwner.VehicleOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +15,12 @@ public class VehicleOwnerController {
     @Autowired
     private VehicleOwnerService vehicleOwnerService;
 
-    @PostMapping("/")
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @PostMapping("/add")
     public ResponseEntity<VehicleOwner> addVehicleOwner(@RequestBody VehicleOwner vehicleOwner){
+        vehicleOwner.setPassword(passwordEncoder.encode(vehicleOwner.getPassword()));
         return new ResponseEntity<>(vehicleOwnerService.addVehicleOwner(vehicleOwner), HttpStatus.CREATED);
     }
 

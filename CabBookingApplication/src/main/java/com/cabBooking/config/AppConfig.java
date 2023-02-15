@@ -23,7 +23,7 @@ public class AppConfig {
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/customer").permitAll()
+                .requestMatchers(HttpMethod.POST, "/customer/add").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterAfter(new JwtTokenGeneratorFilter(), BasicAuthenticationFilter.class)
