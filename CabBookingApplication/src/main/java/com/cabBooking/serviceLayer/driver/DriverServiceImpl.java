@@ -22,18 +22,7 @@ public class DriverServiceImpl implements DriverService{
         Driver drv = null;
 
         if (driver.getEmail()!=null){
-            drv = driverDao.findDriverByEmail(driver.getEmail());
-
-            if (drv==null){
-                drv = driverDao.save(driver);
-            }
-            else {
-                //Driver Already Exists
-            }
-        }
-
-        if (driver.getPhone()!=null){
-            drv = driverDao.findDriverByPhone(driver.getPhone());
+            drv = driverDao.findByEmail(driver.getEmail()).get();
 
             if (drv==null){
                 drv = driverDao.save(driver);

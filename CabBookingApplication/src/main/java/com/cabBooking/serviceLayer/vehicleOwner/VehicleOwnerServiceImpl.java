@@ -18,22 +18,13 @@ public class VehicleOwnerServiceImpl implements VehicleOwnerService {
         VehicleOwner vOwner = null;
 
         if (vehicleOwner.getEmail()!=null){
-            vOwner = vehicleOwnerDao.findVehicleOwnerByEmail(vehicleOwner.getEmail());
+            vOwner = vehicleOwnerDao.findByEmail(vehicleOwner.getEmail()).get();
 
             if (vOwner==null){
                 vOwner = vehicleOwnerDao.save(vehicleOwner);
             }
             else {
                 //VehicleOwner With Email Already Exists
-            }
-        }
-
-        if (vehicleOwner.getPhone()!=null){
-            vOwner = vehicleOwnerDao.findVehicleOwnerByPhone(vehicleOwner.getPhone());
-
-            if (vOwner==null) vOwner = vehicleOwnerDao.save(vehicleOwner);
-            else {
-                //VehicleOwner With Phone Already Exists
             }
         }
 

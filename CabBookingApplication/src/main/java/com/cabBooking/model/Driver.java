@@ -1,6 +1,7 @@
 package com.cabBooking.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,8 @@ public class Driver {
 
     String phone;
 
+    @Email
+    @Column(unique = true)
     String email;
 
     String password;

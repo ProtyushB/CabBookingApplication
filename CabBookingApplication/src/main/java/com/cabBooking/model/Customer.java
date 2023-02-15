@@ -28,6 +28,7 @@ public class Customer {
     String phone;
 
     @Email
+    @Column(unique = true)
     String email;
 
     //@Transient
